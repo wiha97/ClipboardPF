@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClipboardPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Clippy" Height="450" MinWidth="450" Width="450">
+    <Grid Background="#232323">
+        <StackPanel Background="#444444" Name="stack" Margin="121,32,74,10"/>
+        <TextBox x:Name="textBox" Foreground="White" BorderBrush="#444444" Background="#232323" Height="23" Width="200" Margin="121,4,121,0" TextWrapping="Wrap" Text="TextBox" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Button x:Name="button" Foreground="White" Background="#444444" Content="Save" HorizontalAlignment="Right" Margin="0,4,74,0" VerticalAlignment="Top" Width="42" Height="23" Click="button_Click"/>
+        <StackPanel Name="bStack" Width="50" HorizontalAlignment="Left" Margin="32,32,0,10"/>
+        <Button x:Name="newCat" Foreground="White" Background="#444444" Opacity="0.1" Content="New" HorizontalAlignment="Left" Margin="32,7,0,0" VerticalAlignment="Top" Width="50" Click="newCat_Click"/>
+
     </Grid>
 </Window>
