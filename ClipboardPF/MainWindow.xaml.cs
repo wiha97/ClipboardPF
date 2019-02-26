@@ -29,9 +29,42 @@ namespace ClipboardPF
         public MainWindow()
         {
             InitializeComponent();
-            clippy = "clippy.txt";
+            CheckCats();
+            CheckFile();
             ReadFromFile();
             LoadCats();
+        }
+
+        //Checks if the "saves" directory exists
+        public void CheckCats()
+        {
+            //If the directory doesn't exist, a new one will be created
+            if (!Directory.Exists(@"saves/"))
+            {
+                Directory.CreateDirectory(@"saves/");
+            }
+
+            //If the dir doesn't contain any files, a default "clippy" will be created
+            if(Directory.GetFiles(@"saves/").Length == 0)
+            {
+                clippy = "clippy";
+            }
+
+            //If there are existing files, the first in the list will be selected as default
+            else
+            {
+                clippy = Path.GetFileNameWithoutExtension(Directory.GetFiles(@"saves/").FirstOrDefault().ToString());
+            }
+
+        }
+
+        //checks if the text file exists
+        public void CheckFile()
+        {
+            if (!File.Exists(@"saves/" + clippy + ".txt"))
+            {
+                File.Create(@"saves/" + clippy + ".txt").Close();
+            }
         }
 
         //Changes what file the clips should save/load from
@@ -61,10 +94,7 @@ namespace ClipboardPF
             bStack.Children.Add(btn);
 
             //Creates the file if it doesn't already exist (good to check if the text file was added while the program was running)
-            if (!File.Exists(@"saves/" + clippy + ".txt"))
-            {
-                File.Create(@"saves/" + clippy + ".txt").Close();
-            }
+            CheckFile();
         }
 
         //Adds new clip to both the GUI (as a Read-Only-TextBox item) and the corresponding text file
@@ -96,7 +126,7 @@ namespace ClipboardPF
         public void ReadFromFile()
         {
             string content = txt;
-            foreach (string item in File.ReadLines(@"saves/" + clippy))
+            foreach (string item in File.ReadLines(@"saves/" + clippy + ".txt"))
             {
                 AddStack(item);
             }
@@ -106,7 +136,7 @@ namespace ClipboardPF
         public void SaveToFile()
         {
             string content = txt;
-            File.AppendAllText(@"saves/" + clippy, content + Environment.NewLine);
+            File.AppendAllText(@"saves/" + clippy + ".txt", content + Environment.NewLine);
         }
 
         //Loads clips from the text file to the GUI
@@ -136,7 +166,7 @@ namespace ClipboardPF
             txt = b.Name;
             clippy = b.Name;
 
-            ChangeTarget(target = clippy + ".txt");
+            ChangeTarget(target = clippy);
 
         }
 
