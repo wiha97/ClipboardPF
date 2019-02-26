@@ -125,6 +125,7 @@ namespace ClipboardPF
         //Gets all the listed items from the selected text file, can even include some funny characters text files normally won't let you save, such as ༼ つ ◕_◕༽つ
         public void ReadFromFile()
         {
+            button.Content = clippy;
             string content = txt;
             foreach (string item in File.ReadLines(@"saves/" + clippy + ".txt"))
             {
@@ -163,7 +164,6 @@ namespace ClipboardPF
         {
             Button b = sender as Button;
             string target;
-            txt = b.Name;
             clippy = b.Name;
 
             ChangeTarget(target = clippy);

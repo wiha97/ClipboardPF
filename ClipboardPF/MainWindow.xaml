@@ -12,6 +12,7 @@
         <Button x:Name="button" Foreground="White" Background="#444444" Content="Save" HorizontalAlignment="Right" Margin="0,4,74,0" VerticalAlignment="Top" Width="42" Height="23" Click="button_Click"/>
         <StackPanel Name="bStack" Width="50" HorizontalAlignment="Left" Margin="32,32,0,10"/>
         <Button x:Name="newCat" Foreground="White" Background="#444444" Opacity="0.1" Content="New" HorizontalAlignment="Left" Margin="32,7,0,0" VerticalAlignment="Top" Width="50" Click="newCat_Click"/>
+        <Label x:Name="label" Foreground="white" Opacity="0.2" Content="" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="69"/>
 
     </Grid>
 </Window>
